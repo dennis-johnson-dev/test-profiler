@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development", // "production" | "development" | "none"  // Chosen mode tells webpack to use its built-in optimizations accordingly.
@@ -12,7 +13,7 @@ module.exports = {
     // the target directory for all output files
     // must be an absolute path (use the Node.js path module)
     filename: "bundle.js", // string    // the filename template for entry chunks
-    publicPath: "/assets/" // string    // the url to the output directory resolved relative to the HTML page
+    publicPath: "/" // string    // the url to the output directory resolved relative to the HTML page
   },
   module: {
     // configuration regarding modules
@@ -68,7 +69,10 @@ module.exports = {
     // ...
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "./src/index.html")
+    })
     // ...
   ]
   // list of additional plugins
