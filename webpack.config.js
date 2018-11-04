@@ -28,7 +28,8 @@ module.exports = {
         // -loader suffix is no longer optional in webpack2 for clarity reasons
         // see webpack 1 upgrade guide
         options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"]
+          presets: ["@babel/preset-env", "@babel/preset-react"],
+          plugins: ["@babel/plugin-syntax-dynamic-import"]
         }
         // options for the loader
       }
