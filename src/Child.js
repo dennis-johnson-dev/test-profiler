@@ -11,18 +11,17 @@ function Child(props) {
       <Profiler
         id="Child"
         onRender={(timing, phase, actualTime, baseTime) => {
-          console.log(timing, phase, actualTime, baseTime);
           // pump data to statsd
-          http({
-            method: "post",
-            url: "http://localhost:3000",
-            data: {
-              timing,
-              phase,
-              actualTime,
-              baseTime
-            }
-          });
+          // http({
+          //   method: "post",
+          //   url: "http://localhost:3000",
+          //   data: {
+          //     timing,
+          //     phase,
+          //     actualTime,
+          //     baseTime
+          //   }
+          // });
         }}
       >
         <p>From Child {props.prop}</p>

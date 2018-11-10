@@ -19,8 +19,9 @@ const jsonParser = bodyParser.json();
 app.get("/", (req, res) => res.send("Hello World!"));
 
 app.post("/", jsonParser, (req, res) => {
+  console.log(req.body);
   const { timing, phase, actualTime, baseTime } = req.body;
-  console.log(req.body.baseTime);
+  // console.log(req.body.baseTime);
   client.timing(`response_time.${timing}.actual`, actualTime);
   client.timing(`response_time.${timing}.base`, baseTime);
   res.sendStatus(200);

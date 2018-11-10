@@ -1,9 +1,7 @@
 import React, { Suspense, Profiler, useState } from "react";
 
 function Form(props) {
-  console.log(props);
   const [value, setValue] = useState("value");
-  console.log(value);
   return (
     <form>
       <label>
