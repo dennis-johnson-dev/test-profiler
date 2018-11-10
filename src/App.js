@@ -9,8 +9,7 @@ import React, { Component, Profiler, Suspense } from "react";
 // const worker = Comlink.proxy(fetch);
 
 // var myWorker = new Worker();
-
-var myOtherWorker = new Worker("worker.js");
+import { myOtherWorker } from "./metrics";
 
 // myOtherWorker.postMessage("ali");
 

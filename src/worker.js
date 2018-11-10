@@ -10,4 +10,3 @@ onmessage = function(event) {
     .then(response => console.log("Success:", JSON.stringify(response)))
     .catch(error => console.error("Error:", error));
 };
-222;
