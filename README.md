@@ -2,9 +2,11 @@
 
 This project is a demo of using the data provided by the new `Profiler` component provided by the React.js core team. RFC - [https://github.com/reactjs/rfcs/pull/51](https://github.com/reactjs/rfcs/pull/51).
 
-This repo demonstrates using the `Profiler` component as part of `react@16.7.0-alpha.0` and sending those metrics to Grafite/Grafana using a Node.js server to proxy traffic to UDP using StatsD.
+This repo emits the data that is provided to the `Profiler` component's `onRender` callback over a web worker to a Node.js server to proxy traffic using StatsD to eventually be seen with Grafana.
 
-To decrease the impact of recording these metrics, the network usage for emitting metrics has been moved to a web worker (see `metrics.js` and `worker.js`).
+The network usage for emitting metrics has been moved to a web worker (see `metrics.js` and `worker.js`) to minimize the metrics gathering impact on the main thread.
+
+The end result could be something like the following (you can create various graphs of your choosing):
 
 ![./docs/timings.png](./docs/timings.png)
 
@@ -66,3 +68,7 @@ Wrap your component with the `Profiler` component and use the `metricsHandler` m
 ![./docs/profiler.png](./docs/profiler.png)
 
 Now, refresh the page or otherwise trigger re-renders to start seeing the data flow through.
+
+## 🚨 Warning 🚨
+
+This project's network usage could cause bandwidth concern due to the amount of metrics emitted. This project is recommended for usage only in development and is very experimental.
