@@ -28,6 +28,7 @@ app.post("/", jsonParser, (req, res) => {
     commitTime,
     startTime
   } = req.body;
+  client.increment(`${id}.renders`);
   client.timing(`response_time.${id}.actual`, actualDuration);
   client.timing(`response_time.${id}.base`, baseDuration);
   client.timing(`response_time.${id}.diff`, commitTime - startTime);
