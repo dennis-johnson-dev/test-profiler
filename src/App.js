@@ -9,7 +9,6 @@ function App() {
     <div>
       <Suspense fallback={<h2>Product list is loading...</h2>}>
         <Profiler id="App" onRender={metricsHandler}>
-          <p>Parent</p>
           <Child prop={"foo"}>foo</Child>
         </Profiler>
       </Suspense>
