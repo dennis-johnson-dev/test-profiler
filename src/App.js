@@ -1,4 +1,5 @@
 import React, { Profiler, Suspense, useState } from "react";
+import { unstable_trace as trace } from "scheduler/tracing";
 
 import Context from "./context";
 
@@ -11,7 +12,7 @@ function App() {
     parentId: "Initial Load"
   });
 
-  return (
+  return trace("initial render", performance.now(), () => (
     <div>
       <Suspense fallback={<h2>Product list is loading...</h2>}>
         <Context.Provider
@@ -25,13 +26,16 @@ function App() {
               actualDuration,
               baseDuration,
               startTime,
-              commitTime
+              commitTime,
+              interactions
             ) => {
+              console.log(interactions);
               metricsWorker.postMessage({
                 actualDuration,
                 baseDuration,
                 commitTime,
                 id,
+                interactions: Array.from(interactions),
                 parentId: context.parentId,
                 phase,
                 startTime
@@ -44,8 +48,7 @@ function App() {
         </Context.Provider>
       </Suspense>
     </div>
-  );
-  e;
+  ));
 }
 
 export default App;

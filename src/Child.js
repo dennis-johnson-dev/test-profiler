@@ -1,4 +1,5 @@
 import React, { Profiler, useContext } from "react";
+import { unstable_trace as trace } from "scheduler/tracing";
 
 import Table from "react-bootstrap/lib/Table";
 
@@ -9,6 +10,8 @@ import Form from "./Form";
 
 function Child(props) {
   let { parentId, updateContext } = useContext(Context);
+  console.log(performance);
+  const perf = performance;
 
   return (
     <div>
@@ -35,7 +38,13 @@ function Child(props) {
       >
         <p>From Child {props.prop}</p>
         <p>
-          <button onClick={e => updateContext({ parentId: "test" })}>
+          <button
+            onClick={e =>
+              trace("clicked to update context", perf.now(), () =>
+                updateContext({ parentId: "test" })
+              )
+            }
+          >
             Update Trace id
           </button>
         </p>
