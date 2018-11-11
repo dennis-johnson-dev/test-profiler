@@ -6,6 +6,6 @@ onmessage = function(event) {
       "Content-Type": "application/json"
     }
   })
-    .then(response => console.log("Success:", JSON.stringify(response)))
+    .then(response => {})
     .catch(error => console.error("Error:", error));
 };

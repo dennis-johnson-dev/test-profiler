@@ -1,5 +1,5 @@
 import worker from "worker-loader!./worker.js";
 
-const myOtherWorker = new worker();
+const metricsWorker = new worker();
 
-export { myOtherWorker };
+export { metricsWorker };

@@ -1,36 +1,45 @@
-import React, { Component, Profiler, Suspense, useState } from "react";
+import React, { Profiler, Suspense, useState } from "react";
 
 import Context from "./context";
 
-import { myOtherWorker } from "./metrics";
+import { metricsWorker } from "./metrics";
 
 const Child = React.lazy(() => import("./Child"));
 
 function App() {
   const [context, setContext] = useState({
-    parentId: "parent"
+    parentId: "Initial Load"
   });
 
   return (
     <div>
       <Suspense fallback={<h2>Product list is loading...</h2>}>
-        <Context.Provider value={{ parentId: context.parentId }}>
+        <Context.Provider
+          value={{ parentId: context.parentId, updateContext: setContext }}
+        >
           <Profiler
             id="App"
-            onRender={(timing, phase, actualTime, baseTime) => {
-              myOtherWorker.postMessage({
-                actualTime,
-                baseTime,
+            onRender={(
+              id,
+              phase,
+              actualDuration,
+              baseDuration,
+              startTime,
+              commitTime
+            ) => {
+              metricsWorker.postMessage({
+                actualDuration,
+                baseDuration,
+                commitTime,
+                id,
                 parentId: context.parentId,
                 phase,
-                timing
+                startTime
               });
             }}
           >
             <p>Parent</p>
-            <Child prop={"foo"} updateTraceId={setContext}>
-              Hello
-            </Child>
+            <Child prop={"foo"}>Hello</Child>
           </Profiler>
         </Context.Provider>
       </Suspense>
