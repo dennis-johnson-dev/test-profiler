@@ -24,10 +24,13 @@ cd docker-grafana-graphite
 make up
 ```
 
-Once the docker containers are running, cd into this project's directoryj and start the dev server
+Once the docker containers are running, `cd` into this project's directory and start the dev server
 
 ```bash
 cd test-profiler
+```
+
+```bash
 npm run dev
 ```
 
@@ -49,13 +52,13 @@ Login using admin/admin for username/password.
 
 Create a new dashboard and start seeing your data!
 
-Some useful metrics noted here are actual time and base time as well as the number of renders for a particular copmonent.
+Some useful metrics noted here are actual duration and base duration as well as the number of renders for a particular copmonent.
 
 App Component Timings:
 
 ![./docs/app_response_time_queries.png](./docs/app_response_time_queries.png)
 
-Component Render Count
+Component Render Count:
 
 ![./docs/render_count.png](./docs/render_count.png)
 
