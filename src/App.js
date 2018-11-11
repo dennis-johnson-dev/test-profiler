@@ -31,10 +31,9 @@ function App() {
               actualTime,
               baseTime
             });
-            // myWorker.postMessage({
-            //   url: "http://localhost:3000",
-            //   method: "POST",
-            // });
+            // const event = { data: { timing, phase, actualTime, baseTime } };
+            // console.log(navigator);
+            // navigator.sendBeacon("http://localhost:3000", event.data);
             // pump data to statsd
             // http({
             //   method: "post",
