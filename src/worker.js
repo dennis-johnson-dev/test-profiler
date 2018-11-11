@@ -1,6 +1,4 @@
 onmessage = function(event) {
-  console.log("UPDATE", event.data);
-  // navigator.sendBeacon("/", JSON.stringify(event.data));
   fetch("http://localhost:3000", {
     body: JSON.stringify(event.data),
     method: "POST",
