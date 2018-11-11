@@ -24,13 +24,14 @@
     "superagent": "4.0.0-beta.5",
     "webpack": "4.24.0",
     "webpack-cli": "3.1.2",
+    "webpack-dev-middleware": "3.4.0",
     "webpack-dev-server": "3.1.10",
+    "webpack-hot-middleware": "2.24.3",
     "worker-loader": "2.0.0",
     "workerize": "0.1.7"
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --config webpack.config.js",
-    "server": "nodemon ./server/index.js"
+    "dev": "nodemon ./server/index.js"
   }
 }

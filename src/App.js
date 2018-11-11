@@ -29,7 +29,7 @@ function App() {
           }}
         >
           <p>Parent</p>
-          <Child prop={"foo"}>Hello</Child>
+          <Child prop={"foo"}>foo</Child>
         </Profiler>
       </Suspense>
     </div>

@@ -3,6 +3,9 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const StatsD = require("node-statsd");
+const webpack = require("webpack");
+const webpackConfig = require("../webpack.config");
+const compiler = webpack(webpackConfig);
 
 const port = 3000;
 
@@ -13,6 +16,15 @@ const client = new StatsD({
 });
 
 app.use(cors());
+
+app.use(
+  require("webpack-dev-middleware")(compiler, {
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath
+  })
+);
+
+app.use(require("webpack-hot-middleware")(compiler));
 
 const jsonParser = bodyParser.json();
 
