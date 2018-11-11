@@ -30,7 +30,7 @@ const jsonParser = bodyParser.json();
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
-app.post("/", jsonParser, (req, res) => {
+app.post("/metrics", jsonParser, (req, res) => {
   console.log(req.body);
   const {
     id,

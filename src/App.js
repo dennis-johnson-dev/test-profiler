@@ -1,6 +1,6 @@
 import React, { Profiler, Suspense, useState } from "react";
 
-import { metricsWorker } from "./metrics";
+import { metricsHandler } from "./metrics";
 
 const Child = React.lazy(() => import("./Child"));
 
@@ -8,26 +8,7 @@ function App() {
   return (
     <div>
       <Suspense fallback={<h2>Product list is loading...</h2>}>
-        <Profiler
-          id="App"
-          onRender={(
-            id,
-            phase,
-            actualDuration,
-            baseDuration,
-            startTime,
-            commitTime
-          ) => {
-            metricsWorker.postMessage({
-              actualDuration,
-              baseDuration,
-              commitTime,
-              id,
-              phase,
-              startTime
-            });
-          }}
-        >
+        <Profiler id="App" onRender={metricsHandler}>
           <p>Parent</p>
           <Child prop={"foo"}>foo</Child>
         </Profiler>
